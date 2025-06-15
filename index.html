@@ -98,6 +98,8 @@
       font-size: 1.2rem;
       color: #000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
     }
 
     .time-box:hover {
@@ -192,6 +194,22 @@
       animation-delay: 2s;
     }
 
+    .time-box.delay-4 {
+      animation-delay: 3s;
+    }
+
+    .time-box.delay-5 {
+      animation-delay: 3.3s;
+    }
+
+    .time-box.delay-6 {
+      animation-delay: 3.6s;
+    }
+
+    .time-box.delay-7 {
+      animation-delay: 3.9s;
+    }
+
     @keyframes fadeIn {
       to {
         opacity: 1;
@@ -202,7 +220,6 @@
 
 <body>
 
-  <!-- Decorative Top Border with Language Toggle -->
   <div class="top-border">
     <div class="logo">M | E</div>
     <div class="language-toggle">
@@ -211,8 +228,7 @@
     </div>
   </div>
 
-  <!-- English Content -->
-  <div class="lang-en lang-active">
+  <div class="lang-en">
     <h1 class="fade-in delay-1">
       <span>Save </span>
       <span class="word-the-inline">the</span>
@@ -222,8 +238,7 @@
     <h2 class="fade-in delay-3">Milot & Ermira</h2>
   </div>
 
-  <!-- Albanian Content -->
-  <div class="lang-sq">
+  <div class="lang-sq lang-active">
     <h1 class="fade-in delay-1">
       <span>Jeni të ftuar ne gëzimin e familjes ton</span>
     </h1>
@@ -231,31 +246,29 @@
     <h2 class="fade-in delay-3">Miloti & Ermira</h2>
   </div>
 
-  <!-- Countdown Section -->
   <div class="countdown-container">
-    <div class="time-box">
+    <div class="time-box delay-4">
       <span id="days">00</span>
-      <span class="label-days lang-en lang-active">Days</span>
-      <span class="label-days lang-sq">Ditë</span>
+      <span class="label-days lang-en">Days</span>
+      <span class="label-days lang-sq lang-active">Ditë</span>
     </div>
-    <div class="time-box">
+    <div class="time-box delay-5">
       <span id="hours">00</span>
-      <span class="label-hours lang-en lang-active">Hours</span>
-      <span class="label-hours lang-sq">Orë</span>
+      <span class="label-hours lang-en">Hours</span>
+      <span class="label-hours lang-sq lang-active">Orë</span>
     </div>
-    <div class="time-box">
+    <div class="time-box delay-6">
       <span id="minutes">00</span>
-      <span class="label-minutes lang-en lang-active">Minutes</span>
-      <span class="label-minutes lang-sq">Minuta</span>
+      <span class="label-minutes lang-en">Minutes</span>
+      <span class="label-minutes lang-sq lang-active">Minuta</span>
     </div>
-    <div class="time-box">
+    <div class="time-box delay-7">
       <span id="seconds">00</span>
-      <span class="label-seconds lang-en lang-active">Seconds</span>
-      <span class="label-seconds lang-sq">Sekonda</span>
+      <span class="label-seconds lang-en">Seconds</span>
+      <span class="label-seconds lang-sq lang-active">Sekonda</span>
     </div>
   </div>
 
-  <!-- Video Section -->
   <section class="video-section">
     <video autoplay muted playsinline loop>
       <source src="Video.mp4" type="video/mp4">
@@ -263,10 +276,9 @@
     </video>
   </section>
 
-  <!-- Gallery Section -->
   <section class="gallery-section">
-    <h2 class="lang-en lang-active">Image Gallery</h2>
-    <h2 class="lang-sq">Galeria e Fotografive</h2>
+    <h2 class="lang-en">Image Gallery</h2>
+    <h2 class="lang-sq lang-active">Galeria e Fotografive</h2>
 
     <div class="gallery-grid">
       <div class="gallery-image">White Box 1</div>
@@ -275,13 +287,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <div class="footer">
-    <h2 class="lang-en lang-active">Contact Us</h2>
-    <h2 class="lang-sq">Na Kontaktoni</h2>
+    <h2 class="lang-en">Contact Us</h2>
+    <h2 class="lang-sq lang-active">Na Kontaktoni</h2>
   </div>
 
-  <!-- Countdown Script -->
   <script>
     const weddingDate = new Date("2026-07-25T20:00:00");
     const daysSpan = document.getElementById("days");
@@ -316,18 +326,26 @@
     setInterval(updateCountdown, 1000);
   </script>
 
-  <!-- Language Toggle Script -->
-  <script>
-    function setLanguage(lang) {
-      document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
-        el.classList.remove('lang-active');
-      });
+<script>
+  function setLanguage(lang) {
+    // Switch language blocks
+    document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
+      el.classList.remove('lang-active');
+    });
+    document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+      el.classList.add('lang-active');
+    });
 
-      document.querySelectorAll(`.lang-${lang}`).forEach(el => {
-        el.classList.add('lang-active');
-      });
-    }
-  </script>
+    // Re-trigger countdown fade-in animation
+    document.querySelectorAll('.time-box').forEach(box => {
+      box.style.animation = 'none'; // Reset animation
+      // Force reflow to re-trigger
+      void box.offsetWidth;
+      box.style.animation = '';
+    });
+  }
+</script>
+
 
 </body>
 </html>
