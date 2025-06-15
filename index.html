@@ -17,17 +17,27 @@
     }
 
 .top-border {
-  height: 60px;              /* Increased height from 40px*/
-  background: #f5e9d8;       
+  height: 60px;
+  background: #000000; /* or your chosen colour */
+  position: relative; /* for absolute positioning inside */
   display: flex;
-  justify-content: space-between; 
+  justify-content: flex-end; /* keep language toggle on the right */
   align-items: center;
   padding: 0 1rem;
-  colour: #000000;           /* Text colour (black) */
-  font-family: 'Allura', cursive; 
+  colour: #fffaf0;
+  font-family: 'Allura', cursive;
   font-size: 1.5rem;
   font-weight: bold;
 }
+
+.top-border .logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* so clicks go to language toggle if overlap */
+}
+
 
 
     .language-toggle img {
@@ -164,9 +174,7 @@
 
   <!-- Decorative Top Border with Language Toggle -->
 <div class="top-border">
-  <div class="logo">
-    M | E
-  </div>
+  <div class="logo">M | E</div>
   <div class="language-toggle">
     <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
     <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
