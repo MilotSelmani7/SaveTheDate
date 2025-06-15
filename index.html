@@ -11,8 +11,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Allura', cursive;
-      background: #fffaf0; /* cream background */
-      color: #000000; /* black text */
+      background: #fffaf0;
+      color: #000000;
       text-align: center;
     }
 
@@ -21,7 +21,7 @@
       background: #f5e9d8;
       position: relative;
       display: flex;
-      justify-content: flex-end; /* keep language toggle on the right */
+      justify-content: flex-end;
       align-items: center;
       padding: 0 1rem;
       colour: #000000;
@@ -35,7 +35,7 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      pointer-events: none; /* so clicks go to language toggle if overlap */
+      pointer-events: none;
     }
 
     .language-toggle img {
@@ -173,6 +173,30 @@
       display: inline-block;
       transform: translateY(0px);
     }
+
+    /* Animation styles */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+    }
+
+    .fade-in.delay-1 {
+      animation-delay: 0s;
+    }
+
+    .fade-in.delay-2 {
+      animation-delay: 0.5s;
+    }
+
+    .fade-in.delay-3 {
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 
@@ -187,27 +211,25 @@
     </div>
   </div>
 
-
-  <!-- Headings -->
+  <!-- English Content -->
   <div class="lang-en lang-active">
-    <h1>
+    <h1 class="fade-in delay-1">
       <span>Save </span>
       <span class="word-the-inline">the</span>
       <span> Date</span>
     </h1>
-    <p class="wedding-date">25 &middot; July &middot; 2026</p>
-    <h2>Milot & Ermira</h2>
+    <p class="wedding-date fade-in delay-2">25 &middot; July &middot; 2026</p>
+    <h2 class="fade-in delay-3">Milot & Ermira</h2>
   </div>
 
+  <!-- Albanian Content -->
   <div class="lang-sq">
-    <h1>
+    <h1 class="fade-in delay-1">
       <span>Jeni të ftuar ne gëzimin e familjes ton</span>
     </h1>
-    <p class="wedding-date">25 &middot; Korrik &middot; 2026</p>
-    <h2>Miloti & Ermira</h2>
+    <p class="wedding-date fade-in delay-2">25 &middot; Korrik &middot; 2026</p>
+    <h2 class="fade-in delay-3">Miloti & Ermira</h2>
   </div>
-
-
 
   <!-- Countdown Section -->
   <div class="countdown-container">
@@ -308,5 +330,4 @@
   </script>
 
 </body>
-
 </html>
