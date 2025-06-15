@@ -16,14 +16,19 @@
       text-align: center;
     }
 
-    .top-border {
-      height: 40px;
-      background: #f5e9d8;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 1rem;
-    }
+.top-border {
+  height: 60px;              /* Increased height from 40px*/
+  background: #f5e9d8;       
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 1rem;
+  colour: #000000;           /* Text colour (black) */
+  font-family: 'Allura', cursive; 
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 
     .language-toggle img {
       width: 32px;
@@ -158,12 +163,16 @@
 <body>
 
   <!-- Decorative Top Border with Language Toggle -->
-  <div class="top-border">
-    <div class="language-toggle">
-      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
-      <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
-    </div>
+<div class="top-border">
+  <div class="logo">
+    M | E
   </div>
+  <div class="language-toggle">
+    <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
+  </div>
+</div>
+
 
 <!-- Headings -->
 <div class="lang-en lang-active">
