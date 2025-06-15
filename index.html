@@ -16,29 +16,27 @@
       text-align: center;
     }
 
-.top-border {
-  height: 40px;
-  background: #f5e9d8; 
-  position: relative; 
-  display: flex;
-  justify-content: flex-end; /* keep language toggle on the right */
-  align-items: center;
-  padding: 0 1rem;
-  colour: #000000;
-  font-family: 'Allura', cursive;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
+    .top-border {
+      height: 40px;
+      background: #f5e9d8;
+      position: relative;
+      display: flex;
+      justify-content: flex-end; /* keep language toggle on the right */
+      align-items: center;
+      padding: 0 1rem;
+      colour: #000000;
+      font-family: 'Allura', cursive;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-.top-border .logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* so clicks go to language toggle if overlap */
-}
-
-
+    .top-border .logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none; /* so clicks go to language toggle if overlap */
+    }
 
     .language-toggle img {
       width: 32px;
@@ -64,6 +62,13 @@
       font-size: 3.5rem;
       margin-bottom: 1.5rem;
       font-family: 'Allura', cursive;
+    }
+
+    .wedding-date {
+      font-family: 'Allura', cursive;
+      font-size: 2rem;
+      margin: 0.3rem 0 1rem;
+      color: #000000;
     }
 
     .word-the {
@@ -160,45 +165,47 @@
     .lang-active {
       display: block;
     }
-      .word-the-inline {
-    font-family: 'Allura', cursive;
-    font-size: 3rem;
-    margin: 0 0.3rem;
-    display: inline-block;
-    transform: translateY(0px);
-  }
+
+    .word-the-inline {
+      font-family: 'Allura', cursive;
+      font-size: 3rem;
+      margin: 0 0.3rem;
+      display: inline-block;
+      transform: translateY(0px);
+    }
   </style>
 </head>
 
 <body>
 
   <!-- Decorative Top Border with Language Toggle -->
-<div class="top-border">
-  <div class="logo">M | E</div>
-  <div class="language-toggle">
-    <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
-    <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
+  <div class="top-border">
+    <div class="logo">M | E</div>
+    <div class="language-toggle">
+      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
+      <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
+    </div>
   </div>
-</div>
 
 
-<!-- Headings -->
-<div class="lang-en lang-active">
-  <h1>
-    <span>Save </span>
-    <span class="word-the-inline">the</span>
-    <span> Date</span>
-  </h1>
-  <h2>Milot & Ermira</h2>
-</div>
+  <!-- Headings -->
+  <div class="lang-en lang-active">
+    <h1>
+      <span>Save </span>
+      <span class="word-the-inline">the</span>
+      <span> Date</span>
+    </h1>
+    <p class="wedding-date">25 &middot; July &middot; 2026</p>
+    <h2>Milot & Ermira</h2>
+  </div>
 
-<div class="lang-sq">
-  <h1>
-    <span>Jeni të ftuar ne gëzimin e familjes ton</span>
-   <!-- <span class="word-the-inline">datën</span> -->
-  </h1>
-  <h2>Miloti & Ermira</h2>
-</div>
+  <div class="lang-sq">
+    <h1>
+      <span>Jeni të ftuar ne gëzimin e familjes ton</span>
+    </h1>
+    <p class="wedding-date">25 &middot; Korrik &middot; 2026</p>
+    <h2>Miloti & Ermira</h2>
+  </div>
 
 
 
@@ -229,7 +236,7 @@
   <!-- Video Section -->
   <section class="video-section">
     <video autoplay muted playsinline loop>
-  <source src="Video.mp4" type="video/mp4">
+      <source src="Video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </section>
