@@ -19,23 +19,33 @@
     .top-border {
       height: 40px;
       background: #f5e9d8;
-      position: relative;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       padding: 0 1rem;
-      colour: #000000;
-      font-family: 'Allura', cursive;
       font-size: 1.5rem;
       font-weight: bold;
+      z-index: 5;
+      position: sticky;
+      top: 0;
     }
 
-    .top-border .logo {
-      position: absolute;
+    .top-logo {
+      position: fixed;
+      top: 0;
       left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
+      height: 40px;
+      background: #f5e9d8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: 'Allura', cursive;
+      z-index: 10;
       pointer-events: none;
+      width: 100px;
     }
 
     .language-toggle img {
@@ -43,13 +53,6 @@
       height: 24px;
       cursor: pointer;
       margin-left: 10px;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
     }
 
     h1 {
@@ -65,16 +68,21 @@
     }
 
     .wedding-date {
-      font-family: 'Allura', cursive;
       font-size: 2rem;
       margin: 0.3rem 0 1rem;
       color: #000000;
     }
 
     .word-the {
-      font-family: 'Allura', cursive;
       font-size: 2.5rem;
       display: block;
+    }
+
+    .word-the-inline {
+      font-size: 3rem;
+      margin: 0 0.3rem;
+      display: inline-block;
+      transform: translateY(0px);
     }
 
     .countdown-container {
@@ -83,6 +91,7 @@
       justify-content: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
+      padding: 0 1rem;
     }
 
     .time-box {
@@ -168,15 +177,7 @@
       display: block;
     }
 
-    .word-the-inline {
-      font-family: 'Allura', cursive;
-      font-size: 3rem;
-      margin: 0 0.3rem;
-      display: inline-block;
-      transform: translateY(0px);
-    }
-
-    /* Animation styles */
+    /* Animations */
     .fade-in {
       opacity: 0;
       animation: fadeIn 1s ease-in forwards;
@@ -215,13 +216,31 @@
         opacity: 1;
       }
     }
+
+    @media (max-width: 480px) {
+      .time-box {
+        width: 80px;
+        height: 80px;
+        font-size: 1rem;
+      }
+
+      .time-box span:first-child {
+        font-size: 1.5rem;
+      }
+
+      .top-logo {
+        width: 60px;
+        font-size: 1.2rem;
+      }
+    }
   </style>
 </head>
 
 <body>
 
+  <div class="top-logo">M | E</div>
+
   <div class="top-border">
-    <div class="logo">M | E</div>
     <div class="language-toggle">
       <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
       <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
@@ -239,9 +258,7 @@
   </div>
 
   <div class="lang-sq lang-active">
-    <h1 class="fade-in delay-1">
-      <span>Jeni të ftuar ne gëzimin e familjes ton</span>
-    </h1>
+    <h1 class="fade-in delay-1">Jeni të ftuar ne gëzimin e familjes ton</h1>
     <p class="wedding-date fade-in delay-2">25 &middot; Korrik &middot; 2026</p>
     <h2 class="fade-in delay-3">Miloti & Ermira</h2>
   </div>
@@ -279,7 +296,6 @@
   <section class="gallery-section">
     <h2 class="lang-en">Image Gallery</h2>
     <h2 class="lang-sq lang-active">Galeria e Fotografive</h2>
-
     <div class="gallery-grid">
       <div class="gallery-image">White Box 1</div>
       <div class="gallery-image">White Box 2</div>
@@ -324,28 +340,22 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    function setLanguage(lang) {
+      document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
+        el.classList.remove('lang-active');
+      });
+      document.querySelectorAll(`.lang-${lang}`).forEach(el => {
+        el.classList.add('lang-active');
+      });
+
+      document.querySelectorAll('.time-box').forEach(box => {
+        box.style.animation = 'none';
+        void box.offsetWidth;
+        box.style.animation = '';
+      });
+    }
   </script>
-
-<script>
-  function setLanguage(lang) {
-    // Switch language blocks
-    document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
-      el.classList.remove('lang-active');
-    });
-    document.querySelectorAll(`.lang-${lang}`).forEach(el => {
-      el.classList.add('lang-active');
-    });
-
-    // Re-trigger countdown fade-in animation
-    document.querySelectorAll('.time-box').forEach(box => {
-      box.style.animation = 'none'; // Reset animation
-      // Force reflow to re-trigger
-      void box.offsetWidth;
-      box.style.animation = '';
-    });
-  }
-</script>
-
-
 </body>
+
 </html>
