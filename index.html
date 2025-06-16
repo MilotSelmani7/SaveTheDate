@@ -41,7 +41,6 @@
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      font-weight: bold;
       font-family: 'Allura', cursive;
       z-index: 10;
       pointer-events: none;
@@ -59,12 +58,14 @@
       font-size: 2.5rem;
       margin: 0.5rem 0;
       font-family: 'Allura', cursive;
+      font-weight: normal;
     }
 
     h2 {
       font-size: 3.5rem;
       margin-bottom: 0.75rem;
       font-family: 'Allura', cursive;
+      font-weight: normal;
     }
 
     .wedding-date {
@@ -85,29 +86,27 @@
       transform: translateY(0px);
     }
 
-    /* Adjusted countdown container to prevent scrolling */
     .countdown-container {
       display: flex;
-      flex-wrap: nowrap; /* no wrapping */
+      flex-wrap: nowrap;
       justify-content: center;
-      gap: 1rem; /* less gap */
+      gap: 1rem;
       margin-bottom: 2rem;
       padding: 0 1rem;
-      overflow-x: visible; /* hide horizontal scroll */
+      overflow-x: visible;
     }
 
-    /* Smaller circles, closer together */
     .time-box {
       background: #ffffff;
       border-radius: 50%;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      width: 70px;  /* smaller */
-      height: 70px; /* smaller */
+      width: 70px;
+      height: 70px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 1rem; /* smaller font */
+      font-size: 1rem;
       color: #000;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
@@ -120,7 +119,7 @@
     }
 
     .time-box span:first-child {
-      font-size: 1.5rem; /* smaller */
+      font-size: 1.5rem;
       font-weight: bold;
     }
 
@@ -180,7 +179,6 @@
       display: block;
     }
 
-    /* Animations */
     .fade-in {
       opacity: 0;
       animation: fadeIn 1s ease-in forwards;
@@ -251,19 +249,19 @@
   </div>
 
   <div class="lang-en">
-    <h1 class="fade-in delay-1">
+    <h2 class="fade-in delay-1">Milot & Ermira</h2>
+    <p class="wedding-date fade-in delay-2">25 &middot; July &middot; 2026</p>
+    <h1 class="fade-in delay-3">
       <span>Save </span>
       <span class="word-the-inline">the</span>
       <span> Date</span>
     </h1>
-    <p class="wedding-date fade-in delay-2">25 &middot; July &middot; 2026</p>
-    <h2 class="fade-in delay-3">Milot & Ermira</h2>
   </div>
 
   <div class="lang-sq lang-active">
-    <h1 class="fade-in delay-1">Jeni të ftuar ne gëzimin e familjes ton</h1>
+    <h2 class="fade-in delay-1">Miloti & Ermira</h2>
     <p class="wedding-date fade-in delay-2">25 &middot; Korrik &middot; 2026</p>
-    <h2 class="fade-in delay-3">Miloti & Ermira</h2>
+    <h1 class="fade-in delay-3">Jeni të ftuar ne gëzimin e familjes ton</h1>
   </div>
 
   <div class="countdown-container">
