@@ -14,6 +14,82 @@
   />
 
   <style>
+    /* Prevent horizontal scrolling on mobile */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* Container for hearts and confetti */
+    #hearts-container {
+      pointer-events: none; /* so it doesn't block clicks */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: visible;
+      z-index: 1000;
+    }
+
+    /* Individual heart */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #bfae85;
+      clip-path: polygon(
+        50% 0%, 
+        61% 15%, 
+        75% 15%, 
+        82% 25%, 
+        82% 40%, 
+        75% 50%, 
+        50% 75%, 
+        25% 50%, 
+        18% 40%, 
+        18% 25%, 
+        25% 15%, 
+        39% 15%
+      );
+      opacity: 0.7;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Confetti piece */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: var(--confetti-color);
+      opacity: 0.8;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.1));
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -138,23 +214,23 @@
     }
 
     /* Swiper customisation */
-.swiper-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  /* remove padding-bottom */
-  position: relative; /* keep relative positioning for nav */
-}
+    .swiper-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      /* remove padding-bottom */
+      position: relative; /* keep relative positioning for nav */
+    }
 
-/* Add explicit styling for pagination */
-.swiper-pagination {
-  display: flex !important;
-  justify-content: center;
-  width: 100%;
-  margin-top: 1rem;
-  box-sizing: border-box;
-  padding: 0 1rem; /* match horizontal page padding */
-  position: static !important; /* override swiper defaults */
-}
+    /* Add explicit styling for pagination */
+    .swiper-pagination {
+      display: flex !important;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1rem;
+      box-sizing: border-box;
+      padding: 0 1rem; /* match horizontal page padding */
+      position: static !important; /* override swiper defaults */
+    }
 
     .swiper-slide img {
       width: 100%;
@@ -269,6 +345,8 @@
 
 <body>
 
+  <div id="hearts-container"></div>
+
   <div class="top-logo">M | E</div>
 
   <div class="top-border">
@@ -326,18 +404,18 @@
     <h1 class="lang-sq lang-active">Festoni me ne!</h1>
 
     <!-- Added venue name and location -->
-<h1 style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0.3rem 0 0; color: #000000;">
-  Restaurant "BA PALACE"
-</h1>
-<h1 style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
-  Shtime 72000
-</h1>
-<h1 class="lang-en" style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
-  Welcoming guests from 19:00 - 19:30
-</h1>
-<h1 class="lang-sq lang-active" style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
-  Pritja e mysafirëve me cocktail: 19:00 - 19:30
-</h1>
+    <h1 style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0.3rem 0 0; color: #000000;">
+      Restaurant "BA PALACE"
+    </h1>
+    <h1 style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
+      Shtime 72000
+    </h1>
+    <h1 class="lang-en" style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
+      Welcoming guests from 19:00 - 19:30
+    </h1>
+    <h1 class="lang-sq lang-active" style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
+      Pritja e mysafirëve me cocktail: 19:00 - 19:30
+    </h1>
 
   </section>
 
@@ -407,62 +485,15 @@
           d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-2.75a1.25 1.25 0 112.5 0 1.25 1.25 0 01-2.5 0z" />
       </svg>
     </a>
-    <div class="instagram-caption lang-sq lang-active">Sallë i dasmës</div>
+    <div class="instagram-caption lang-sq lang-active">Vendi i dasmës</div>
   </div>
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
   <script>
-    const weddingDate = new Date("2026-07-25T20:00:00");
-    const daysSpan = document.getElementById("days");
-    const hoursSpan = document.getElementById("hours");
-    const minutesSpan = document.getElementById("minutes");
-    const secondsSpan = document.getElementById("seconds");
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = weddingDate - now;
-
-      if (diff <= 0) {
-        daysSpan.textContent = "00";
-        hoursSpan.textContent = "00";
-        minutesSpan.textContent = "00";
-        secondsSpan.textContent = "00";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      daysSpan.textContent = String(days).padStart(2, '0');
-      hoursSpan.textContent = String(hours).padStart(2, '0');
-      minutesSpan.textContent = String(minutes).padStart(2, '0');
-      secondsSpan.textContent = String(seconds).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    function setLanguage(lang) {
-      document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
-        el.classList.remove('lang-active');
-      });
-      document.querySelectorAll(`.lang-${lang}`).forEach(el => {
-        el.classList.add('lang-active');
-      });
-
-      document.querySelectorAll('.time-box').forEach(box => {
-        box.style.animation = 'none';
-        void box.offsetWidth;
-        box.style.animation = '';
-      });
-    }
-
+    // Initialise Swiper
     const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 15,
       loop: true,
       pagination: {
         el: '.swiper-pagination',
@@ -472,12 +503,113 @@
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      breakpoints: {
-        480: { slidesPerView: 2 },
-        768: { slidesPerView: 3 },
-      },
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+      const weddingDate = new Date('July 25, 2026 19:00:00');
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Language toggle
+    function setLanguage(lang) {
+      if (lang === 'en') {
+        document.querySelectorAll('.lang-en').forEach(el => el.classList.add('lang-active'));
+        document.querySelectorAll('.lang-sq').forEach(el => el.classList.remove('lang-active'));
+      } else {
+        document.querySelectorAll('.lang-en').forEach(el => el.classList.remove('lang-active'));
+        document.querySelectorAll('.lang-sq').forEach(el => el.classList.add('lang-active'));
+      }
+    }
+
+    // Animated hearts
+    function createHeart() {
+      const container = document.getElementById('hearts-container');
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+
+      // random horizontal start position
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+
+      // random animation duration between 5 to 10 seconds
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+      container.appendChild(heart);
+
+      // remove heart after animation
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    function startHearts() {
+      setInterval(createHeart, 500); // create a heart every 0.5 seconds
+    }
+
+    // Animated confetti
+    const confettiColors = ['#bfae85', '#d6c4a2', '#f0e6d2', '#c5b592', '#a88e55'];
+
+    function createConfetti() {
+      const container = document.getElementById('hearts-container');
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+
+      // random horizontal start position
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+
+      // random confetti color from the array
+      const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      confetti.style.setProperty('--confetti-color', color);
+
+      // random animation duration between 5 to 12 seconds
+      confetti.style.animationDuration = (5 + Math.random() * 7) + 's';
+
+      // random delay so confetti appear spread out
+      confetti.style.animationDelay = (Math.random() * 5) + 's';
+
+      // random starting opacity between 0.5 and 0.9
+      confetti.style.opacity = (0.5 + Math.random() * 0.4).toString();
+
+      container.appendChild(confetti);
+
+      // remove confetti after animation
+      confetti.addEventListener('animationend', () => {
+        confetti.remove();
+      });
+    }
+
+    function startConfetti() {
+      setInterval(createConfetti, 300); // create confetti every 0.3 seconds
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      startHearts();
+      startConfetti();
     });
   </script>
+
 </body>
 
 </html>
