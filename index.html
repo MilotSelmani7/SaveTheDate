@@ -27,44 +27,49 @@ html, body {
   overflow-x: hidden;
 }
 
+.top-border  {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: #f5e9d8;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1000;
+  box-sizing: border-box;
+}
 
-    .top-border {
-      height: 40px;
-      background: #f5e9d8;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      z-index: 5;
-      position: sticky;
-      top: 0;
-    }
+.top-logo {
+  position: fixed;
+  top: 6px; /* slightly lowered to clear top-border */
+  left: 50%;
+  transform: translateX(-50%);
+  height: 36px;
+  width: 100px;
+  background: #f5e9d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-family: 'Allura', cursive;
+  z-index: 1001;
+  pointer-events: none;
+}
 
-    .top-logo {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 40px;
-      background: #f5e9d8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-family: 'Allura', cursive;
-      z-index: 10;
-      pointer-events: none;
-      width: 100px;
-    }
+.language-toggle img {
+  width: 32px;
+  height: 24px;
+  object-fit: cover; /* crops if needed to preserve aspect ratio inside fixed box */
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 2px; /* optional: gives flags a clean edge */
+}
 
-    .language-toggle img {
-      width: 32px;
-      height: 24px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
 
     h1 {
       font-size: 2.5rem;
@@ -284,6 +289,7 @@ html, body {
   </div>
 
   <div class="lang-en">
+       <div style="height: 1.5rem;"></div>
     <h2 class="fade-in delay-1">Milot & Ermira</h2>
     <p class="wedding-date fade-in delay-2">25 &middot; July &middot; 2026</p>
     <h1 class="fade-in delay-3">
@@ -294,6 +300,7 @@ html, body {
   </div>
 
   <div class="lang-sq lang-active">
+       <div style="height: 1.5rem;"></div>
     <h2 class="fade-in delay-1">Miloti & Ermira</h2>
     <p class="wedding-date fade-in delay-2">25 &middot; Korrik &middot; 2026</p>
     <h1 class="fade-in delay-3">Jeni të ftuar ne gëzimin e familjes ton</h1>
@@ -389,8 +396,8 @@ html, body {
       Ju lutemi konfirmoni pjesëmarrjen tuaj me telefon
     </p>
 
-    <p class="lang-en" style="font-family: 'Allura', cursive; font-size: 1.5rem; margin: 0 0 0.8rem;">+44 7932
-      609458
+    <p class="lang-en" style="font-family: 'Allura', cursive; font-size: 1.5rem; margin: 0 0 0.8rem;">+44 7828
+      995217
     </p>
     
     <p class="lang-sq lang-active" style="font-family: 'Allura', cursive; font-size: 1.5rem; margin: 0 0 0.8rem;">+44 7828
