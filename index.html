@@ -14,7 +14,21 @@
   />
 
   <style>
-    /* Your entire existing styles unchanged... */
+  
+    /* 👇 NEW: Emoji bounce styles */
+.emoji-bounce {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fade-on-scroll.visible .emoji-bounce {
+  opacity: 1;
+  transform: scale(1);
+}
+
+    
     body {
       margin: 0;
       padding: 0;
@@ -337,8 +351,14 @@
       <source src="Video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
-    <h1 class="lang-en">Celebrate with us!</h1>
-    <h1 class="lang-sq lang-active">Festoni me ne!</h1>
+<h1 class="lang-en fade-on-scroll">
+  Celebrate with us! <span class="emoji-bounce">🥂</span>
+</h1>
+<h1 class="lang-sq lang-active fade-on-scroll">
+  Festoni me ne! <span class="emoji-bounce">🥂</span>
+</h1>
+
+
 
     <!-- Added venue name and location -->
     <h1 style="font-family: 'Allura', cursive; font-size: 2.0rem; margin: 0 0 1.5rem; color: #000000;">
@@ -580,6 +600,22 @@ function tryPlayMusic() {
       }
     }
   });
+  
+  // 👇 NEW: Fade-in on scroll for text (incl. emoji bounce)
+const fadeEls = document.querySelectorAll('.fade-on-scroll');
+
+const fadeObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.4
+});
+
+fadeEls.forEach(el => fadeObserver.observe(el));
+
 </script>
 </body>
 
