@@ -15,12 +15,22 @@
 
   <style>
   
-    /* 👇 NEW: Emoji bounce styles */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out 6s, transform 1s ease-out 6s; /* DELAY now 6s */
+}
+
+.fade-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .emoji-bounce {
   display: inline-block;
   opacity: 0;
   transform: scale(0.5);
-  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: opacity 0.5s ease 7s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 7s; /* DELAY now 7s */
 }
 
 .fade-on-scroll.visible .emoji-bounce {
