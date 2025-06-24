@@ -18,21 +18,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Allura', cursive;
-  background: linear-gradient(rgba(255, 250, 240, 0.8), rgba(255, 250, 240, 0.8)),
-              url('WebsiteBackground.png') center center / cover no-repeat;
+  background: #fffaf0;
   color: #000000;
   text-align: center;
 }
-
-.top-border,
-.top-logo,
-.footer {
-  background: linear-gradient(rgba(255, 250, 240, 0.85), rgba(255, 250, 240, 0.85)),
-              url('WebsiteBackground.png') center center / cover no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 
 html, body {
   overflow-x: hidden;
@@ -124,10 +113,8 @@ html, body {
       overflow-x: visible;
     }
 
-.time-box {
-  background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-              url('WebsiteBackground.png') center center / cover no-repeat;
-  border-radius: 50%;
+    .time-box {
+      background: #ffffff;
       border-radius: 50%;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       width: 70px;
@@ -154,10 +141,9 @@ html, body {
     }
 
     /* Reduced padding here */
-.gallery-section,
-.video-section {
-  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
-              url('WebsiteBackground.png') center center / cover no-repeat;
+    .gallery-section,
+    .video-section {
+      background: #ffffff;
       padding: 2.5rem 1rem; /* Reduced from 3rem */
     }
 
@@ -288,15 +274,15 @@ html, body {
         font-size: 1.2rem;
       }
     }
-    
-
-    
   </style>
 </head>
 
 <body>
 
+  <audio id="bg-music" src="BackgroundMusic.mp3" autoplay loop></audio>
+
   <div class="top-logo">M | E</div>
+
 
   <div class="top-border">
     <div class="language-toggle">
