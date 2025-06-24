@@ -18,7 +18,7 @@
 .fade-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 1s ease-out 6s, transform 1s ease-out 6s; /* DELAY now 6s */
+  transition: opacity 1s ease-out 4s, transform 1s ease-out 4s;
 }
 
 .fade-on-scroll.visible {
@@ -308,12 +308,19 @@
 
   <div class="top-logo">M | E</div>
 
-  <div class="top-border">
-    <div class="language-toggle">
+<div class="top-border">
+  <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center; height: 100%;">
+    <div class="language-toggle" style="display: flex; gap: 10px;">
       <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
       <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
     </div>
+    <div class="language-caption" style="font-size: 0.8rem; font-family: 'Allura', cursive; color: #444; line-height: 1.3;">
+      Language / Gjuha
+    </div>
   </div>
+</div>
+
+
 
   <div class="lang-en">
     <div style="height: 1.5rem;"></div>
