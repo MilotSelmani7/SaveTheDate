@@ -532,13 +532,55 @@ function tryPlayMusic() {
   }
 }
 
-// Trigger when user scrolls
-window.addEventListener('scroll', tryPlayMusic, { once: true });
+// Audio play on user interaction with Safari mute workaround
+  const audio = document.getElementById('bg-music');
+  let audioStarted = false;
 
-// Also catch tap or swipe (for extra Safari compatibility)
-window.addEventListener('touchstart', tryPlayMusic, { once: true });
+  function playAudioOnInteraction() {
+    if (audioStarted) return;
+    audioStarted = true;
 
-  </script>
+    // Safari autoplay workaround: start muted then unmute
+    audio.volume = 0;
+    audio.play().then(() => {
+      // Fade in volume to normal after short delay
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        vol += 0.05;
+        if (vol >= 1) {
+          vol = 1;
+          clearInterval(fadeIn);
+        }
+        audio.volume = vol;
+      }, 100);
+    }).catch(err => {
+      console.log('Audio play error:', err);
+    });
+
+    // Remove event listeners after playing
+    window.removeEventListener('scroll', playAudioOnInteraction);
+    window.removeEventListener('touchstart', playAudioOnInteraction);
+    window.removeEventListener('click', playAudioOnInteraction);
+  }
+
+  // Wait for user interaction to start audio
+  window.addEventListener('scroll', playAudioOnInteraction, { once: true });
+  window.addEventListener('touchstart', playAudioOnInteraction, { once: true });
+  window.addEventListener('click', playAudioOnInteraction, { once: true });
+
+  // Pause/resume audio on tab visibility change
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      audio.pause();
+    } else {
+      if (audioStarted) {
+        audio.play().catch(err => {
+          console.log('Audio play on visibility change error:', err);
+        });
+      }
+    }
+  });
+</script>
 </body>
 
 </html>
