@@ -177,46 +177,59 @@ Put your HTML text here<!DOCTYPE html>
       position: relative; /* keep relative positioning for nav */
     }
 
-    /* Add explicit styling for pagination */
-    .swiper-pagination {
-      display: flex !important;
-      justify-content: center;
-      width: 100%;
-      margin-top: 1rem;
-      box-sizing: border-box;
-      padding: 0 1rem; /* match horizontal page padding */
-      position: static !important; /* override swiper defaults */
-    }
+.swiper-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 2.5rem; /* ensures there's room for pagination */
+}
 
-    .swiper-slide img {
-      width: 100%;
-      height: 16rem;
-      object-fit: cover;
-      border-radius: 1rem;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+/* Swiper pagination: positioned over the image */
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin-top: 0; /* remove previous push */
+}
 
-    .swiper-slide:hover img {
-      transform: scale(1.03);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
+/* Swiper slide images */
+.swiper-slide img {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    /* Swiper navigation arrows styling */
-    .swiper-button-next,
-    .swiper-button-prev {
-      color: #bfae85;
-    }
+.swiper-slide:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
 
-    /* Swiper pagination bullets styling */
-    .swiper-pagination-bullet {
-      background: #bfae85;
-      opacity: 0.7;
-    }
+/* Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #bfae85;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-    .swiper-pagination-bullet-active {
-      opacity: 1;
-    }
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background: #bfae85;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
 
     video {
       width: 90%;
@@ -446,7 +459,7 @@ stroke-dashoffset: 163.36;
       </feMerge>
     </filter>
   </defs>
-  <circle class="circle-path" cx="305" cy="352" r="26" filter="url(#glow)" />
+  <circle class="circle-path" cx="304" cy="351" r="26" filter="url(#glow)" />
 </svg>
 
 </div>
