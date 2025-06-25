@@ -170,27 +170,20 @@ Put your HTML text here<!DOCTYPE html>
     }
 
     /* Swiper customisation */
-    .swiper-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      /* remove padding-bottom */
-      position: relative; /* keep relative positioning for nav */
-    }
-
 .swiper-container {
   max-width: 1000px;
   margin: 0 auto;
-  position: relative;
-  padding-bottom: 2rem; /* leaves space below image for dots if needed */
+  position: relative; /* Needed for absolute children */
+  overflow: visible; /* Ensure arrows/dots are visible */
 }
 
-/* Force container height based on slide image */
+/* Ensure slide fills container height */
 .swiper-slide {
+  height: 16rem; /* fixed height */
   position: relative;
-  height: 16rem; /* Ensure height for smaller screens */
 }
 
-/* Make sure image fills the slide container */
+/* Image fills slide */
 .swiper-slide img {
   width: 100%;
   height: 100%;
@@ -200,36 +193,43 @@ Put your HTML text here<!DOCTYPE html>
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect (only applies on non-touch) */
-.swiper-slide:hover img {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Arrows */
+/* Arrows styling and positioning */
 .swiper-button-next,
 .swiper-button-prev {
-  color: #bfae85;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+  z-index: 20;
+  color: #bfae85;
+  width: 27px;  /* adjust size if needed */
+  height: 44px;
+  cursor: pointer;
 }
 
-/* Dots (pagination) */
+/* Position arrows left and right */
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+/* Pagination dots */
 .swiper-pagination {
   position: absolute !important;
   bottom: 10px;
   left: 0;
   width: 100%;
+  text-align: center;
+  z-index: 20;
   display: flex !important;
   justify-content: center;
   padding: 0 1rem;
   margin: 0;
-  z-index: 10;
 }
 
-/* Dot colour */
+/* Keep the bullet colours the same */
 .swiper-pagination-bullet {
   background: #bfae85;
   opacity: 0.7;
@@ -238,6 +238,7 @@ Put your HTML text here<!DOCTYPE html>
 .swiper-pagination-bullet-active {
   opacity: 1;
 }
+
 
 
     video {
@@ -468,7 +469,7 @@ stroke-dashoffset: 163.36;
       </feMerge>
     </filter>
   </defs>
-  <circle class="circle-path" cx="304" cy="351" r="26" filter="url(#glow)" />
+  <circle class="circle-path" cx="303.5" cy="350.5" r="26" filter="url(#glow)" />
 </svg>
 
 </div>
