@@ -240,6 +240,21 @@ Put your HTML text here<!DOCTYPE html>
 }
 
 
+/* Fix for arrows and dots overlay */
+.swiper-container {
+  height: 16rem; /* same as slide height */
+}
+
+@media (max-width: 480px) {
+  .swiper-container {
+    height: 12rem;
+  }
+
+  .swiper-slide {
+    height: 12rem;
+  }
+}
+
 
     video {
       width: 90%;
