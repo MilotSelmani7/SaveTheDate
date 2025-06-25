@@ -332,7 +332,7 @@
     .animate .circle-path {
       animation:
         drawCircle 2s ease-out forwards,
-        jitter 1s ease-in-out infinite alternate;
+        ;
     }
 
     @keyframes drawCircle {
@@ -341,13 +341,7 @@
       }
     }
 
-    @keyframes jitter {
-      0%   { transform: translate(0px, 0px) rotate(0deg); }
-      25%  { transform: translate(-0.5px, 0.5px) rotate(-0.2deg); }
-      50%  { transform: translate(0.5px, -0.5px) rotate(0.3deg); }
-      75%  { transform: translate(-0.4px, 0.4px) rotate(-0.1deg); }
-      100% { transform: translate(0px, 0px) rotate(0.2deg); }
-    }
+    
     
     
   </style>
@@ -455,13 +449,14 @@
     
         <!-- INSERTED CALENDAR ANIMATION -->
     <div class="calendar-container" id="calendarSection">
-      <img src="Calendar.png" alt="Calendar 2026" class="calendar-image" />
+      <img src="calendar.png" alt="Calendar July 2026" class="calendar-image" />
       <svg class="circle-animation" viewBox="0 0 400 428" xmlns="http://www.w3.org/2000/svg">
-        <path class="circle-path"
-              d="M260,335
-                 C270,320 295,320 305,335
-                 C315,350 295,375 275,365
-                 C255,355 250,345 260,335 Z" />
+       <path class="circle-path"
+      d="M282,360
+         C290,340 320,340 328,360
+         C336,380 312,398 294,388
+         C276,378 274,368 282,360 Z" />
+
       </svg>
     </div>
     
@@ -697,7 +692,7 @@ const fadeObserver = new IntersectionObserver(entries => {
     }
   });
 }, {
-  threshold: 0.4
+  threshold: 1
 });
 
 fadeEls.forEach(el => fadeObserver.observe(el));
@@ -709,7 +704,7 @@ fadeEls.forEach(el => fadeObserver.observe(el));
           entry.target.classList.add('animate');
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 1 });
     observer.observe(document.getElementById('calendarSection'));
 
 </script>
