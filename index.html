@@ -325,8 +325,10 @@
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 125.66; /* 2πr for r=18 */
-stroke-dashoffset: 125.66;
+/* for r = 22 */
+stroke-dasharray: 138.2; /* 2 * π * 22 */
+stroke-dashoffset: 138.2;
+
 
   transform-origin: center;
   filter: drop-shadow(0 0 6px #e74c3c); /* subtle glow */
@@ -437,7 +439,7 @@ stroke-dashoffset: 125.66;
       </feMerge>
     </filter>
   </defs>
-  <circle class="circle-path" cx="310" cy="360" r="20" filter="url(#glow)" />
+  <circle class="circle-path" cx="320" cy="360" r="22" filter="url(#glow)" />
 </svg>
 
 </div>
