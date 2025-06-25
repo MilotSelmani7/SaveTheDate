@@ -1,359 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Milot & Ermira | Save the Date</title>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Allura:wght@400;700&display=swap" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Aboreto' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Aboreto" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <style>
-  
-  
-  
-.fade-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out 4s, transform 1s ease-out 4s;
-}
-
-.fade-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.emoji-bounce {
-  display: inline-block;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.5s ease 7s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 7s; /* DELAY now 7s */
-}
-
-.fade-on-scroll.visible .emoji-bounce {
-  opacity: 1;
-  transform: scale(1);
-}
-
-    
     body {
       margin: 0;
       padding: 0;
       font-family: 'Allura', cursive;
       background: #fffaf0;
-      color: #000000;
       text-align: center;
+      color: #000;
     }
+    html, body { overflow-x: hidden; }
 
-    html, body {
-      overflow-x: hidden;
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.34,1.56,.64,1);
+      will-change: opacity, transform;
     }
+    .fade-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-on-scroll.delay-1 { transition-delay: 0.1s; }
+    .fade-on-scroll.delay-2 { transition-delay: 0.2s; }
+    .fade-on-scroll.delay-3 { transition-delay: 0.3s; }
+    .fade-on-scroll.delay-4 { transition-delay: 0.4s; }
+    .fade-on-scroll.delay-5 { transition-delay: 0.5s; }
+    .fade-on-scroll.delay-6 { transition-delay: 0.6s; }
 
-    .top-border  {
+    .top-border, .top-logo {
+      background: #f5e9d8;
       position: fixed;
-      top: 0;
       left: 0;
       width: 100%;
+      z-index: 1000;
+    }
+    .top-border {
+      top: 0;
       height: 48px;
-      background: #f5e9d8;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       padding: 0 1rem;
       font-size: 1.5rem;
       font-weight: bold;
-      z-index: 1000;
       box-sizing: border-box;
     }
-
     .top-logo {
-      position: fixed;
-      top: 6px; /* slightly lowered to clear top-border */
+      top: 6px;
       left: 50%;
-      transform: translateX(-50%);
-      height: 36px;
       width: 100px;
-      background: #f5e9d8;
+      height: 36px;
+      transform: translateX(-50%);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Allura', cursive;
       font-size: 1.5rem;
-      font-family: 'Allura', cursive;
-      z-index: 1001;
       pointer-events: none;
-    }
-
-    .language-toggle img {
-      width: 32px;
-      height: 24px;
-      object-fit: cover; /* crops if needed to preserve aspect ratio inside fixed box */
-      cursor: pointer;
-      margin-left: 10px;
-      border-radius: 2px; /* optional: gives flags a clean edge */
-    }
-
-
-    h1 {
-      font-size: 2.5rem;
-      margin: 2rem 0;
-      font-family: 'Allura', cursive;
-      font-weight: normal;
-    }
-
-    h2 {
-      font-size: 3.5rem;
-      margin-bottom: 0.75rem;
-      font-family: 'Allura', cursive;
-      font-weight: normal;
-    }
-
-    .wedding-date {
-      font-size: 2rem;
-      margin: 0.3rem 0 1rem;
-      color: #000000;
-    }
-
-    .word-the {
-      font-size: 2.5rem;
-      display: block;
-    }
-
-    .word-the-inline {
-      font-size: 2.5rem;
-      margin: 0 0.3rem;
-      display: inline-block;
-      transform: translateY(0px);
+      z-index: 1001;
     }
 
     .countdown-container {
       display: flex;
-      flex-wrap: nowrap;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 2rem;
       padding: 0 1rem;
-      overflow-x: visible;
+      margin: 2rem 0;
     }
-
     .time-box {
-      background: #ffffff;
-      border-radius: 50%;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      background: #fff;
       width: 70px;
       height: 70px;
+      border-radius: 50%;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       font-size: 1rem;
       color: #000;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      animation: fadeIn 1s ease-in forwards;
     }
-
-    .time-box:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-    }
-
     .time-box span:first-child {
       font-size: 1.5rem;
       font-weight: bold;
     }
 
-    /* Reduced padding here */
-    .gallery-section,
-    .video-section {
-      background: #ffffff;
-      padding: 2.5rem 1rem; /* Reduced from 3rem */
+    .gallery-section {
+      background: #fff;
+      padding: 2.5rem 1rem;
+      position: relative;
     }
-
-    /* Swiper customisation */
-.swiper-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  position: relative; /* Needed for absolute children */
-  overflow: visible; /* Ensure arrows/dots are visible */
-}
-
-/* Ensure slide fills container height */
-.swiper-slide {
-  height: 16rem; /* fixed height */
-  position: relative;
-}
-
-/* Image fills slide */
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Arrows styling and positioning */
-.swiper-button-next,
-.swiper-button-prev {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  color: #bfae85;
-  width: 27px;  /* adjust size if needed */
-  height: 44px;
-  cursor: pointer;
-}
-
-/* Position arrows left and right */
-.swiper-button-prev {
-  left: 10px;
-}
-
-.swiper-button-next {
-  right: 10px;
-}
-
-/* Pagination dots */
-.swiper-pagination {
-  position: absolute !important;
-  bottom: 10px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 20;
-  display: flex !important;
-  justify-content: center;
-  padding: 0 1rem;
-  margin: 0;
-}
-
-/* Keep the bullet colours the same */
-.swiper-pagination-bullet {
-  background: #bfae85;
-  opacity: 0.7;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: 1;
-}
-
-
-/* Fix for arrows and dots overlay */
-.swiper-container {
-  height: 16rem; /* same as slide height */
-}
-
-@media (max-width: 480px) {
-  .swiper-container {
-    height: 20rem;
-  }
-
-  .swiper-slide {
-    height: 20rem;
-  }
-}
-
-
-    video {
-      width: 90%;
-      max-width: 400px;
+    .swiper-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      overflow: visible;
+    }
+    .swiper-slide {
+      height: 16rem;
+      position: relative;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 1rem;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      outline: none;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .swiper-slide img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .footer {
-      margin-top: 3rem;
-      padding-bottom: 2rem;
-      font-size: 1rem;
+    .swiper-button-next, .swiper-button-prev {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      color: #bfae85;
+      width: 27px;
+      height: 44px;
     }
+    .swiper-button-prev { left: 10px; }
+    .swiper-button-next { right: 10px; }
 
-    .lang-sq,
-    .lang-en {
-      display: none;
+    .swiper-pagination {
+      position: absolute !important;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 20;
+      display: flex !important;
+      justify-content: center;
+      padding: 0 1rem;
+      margin: 0;
     }
-
-    .lang-active {
-      display: block;
-    }
-
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1s ease-in forwards;
-    }
-
-    .fade-in.delay-1 {
-      animation-delay: 0s;
-    }
-
-    .fade-in.delay-2 {
-      animation-delay: 1s;
-    }
-
-    .fade-in.delay-3 {
-      animation-delay: 2s;
-    }
-
-    .time-box.delay-4 {
-      animation-delay: 3s;
-    }
-
-    .time-box.delay-5 {
-      animation-delay: 3.3s;
-    }
-
-    .time-box.delay-6 {
-      animation-delay: 3.6s;
-    }
-
-    .time-box.delay-7 {
-      animation-delay: 3.9s;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
+    .swiper-pagination-bullet { background: #bfae85; opacity: 0.7; }
+    .swiper-pagination-bullet-active { opacity: 1; }
 
     @media (max-width: 480px) {
-      .time-box {
-        width: 60px;
-        height: 60px;
-        font-size: 0.9rem;
-      }
-
-      .time-box span:first-child {
-        font-size: 1.2rem;
-      }
-
-      .top-logo {
-        width: 60px;
-        font-size: 1.2rem;
-      }
+      .swiper-container, .swiper-slide { height: 20rem; }
+      .time-box { width: 60px; height: 60px; font-size: .9rem; }
+      .time-box span:first-child { font-size: 1.2rem; }
+      .top-logo { width: 60px; font-size: 1.2rem; }
     }
-    
-    
-        .calendar-container {
+
+    .calendar-container {
       position: relative;
       width: 90%;
       max-width: 400px;
       margin: 3rem auto;
-      background: #fffaf0; /* <- Added background colour */
-      padding: 1rem; /* adds cream space around the image */
-      border-radius: 1rem; /* Optional: soft corner rounding */
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* optional subtle depth */
+      background: #fffaf0;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-
     .calendar-image {
       width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
-}
-
+      height: auto;
+      display: block;
+    }
     .circle-animation {
       position: absolute;
       top: 0;
@@ -362,415 +178,134 @@
       height: 100%;
       pointer-events: none;
     }
-
-.circle-path {
-  fill: none;
-  stroke: #e74c3c;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-/* for r = 26 */
-stroke-dasharray: 163.36;
-/* 2 * π * 26 */
-stroke-dashoffset: 163.36;
-
-
-  transform-origin: center;
-  filter: drop-shadow(0 0 6px #e74c3c); /* subtle glow */
-}
-
-
+    .circle-path {
+      fill: none;
+      stroke: #e74c3c;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 163.36;
+      stroke-dashoffset: 163.36;
+      transform-origin: center;
+      filter: drop-shadow(0 0 6px #e74c3c);
+    }
     .animate .circle-path {
-      animation:
-        drawCircle 2s ease-out forwards;
-        
+      animation: drawCircle 2s ease-out forwards;
     }
-
     @keyframes drawCircle {
-      to {
-        stroke-dashoffset: 0;
-      }
+      to { stroke-dashoffset: 0; }
     }
-
-    
-    
-    
   </style>
 </head>
-
 <body>
+  <audio id="bg-music" src="BackgroundMusic.mp3" loop preload="auto"></audio>
 
-<audio id="bg-music" src="BackgroundMusic.mp3" loop preload="auto"></audio>
-
+  <div class="top-border">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" style="width:32px;height:24px;cursor:pointer;border-radius:2px;">
+      <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" style="width:32px;height:24px;cursor:pointer;border-radius:2px;">
+    </div>
+  </div>
   <div class="top-logo">M | E</div>
 
-<div class="top-border">
-  <div style="display: flex; flex-direction: column; align-items: flex-end; justify-content: center; height: 100%;">
-    <div class="language-toggle" style="display: flex; gap: 10px;">
-      <img src="https://flagcdn.com/gb.svg" alt="English" onclick="setLanguage('en')" />
-      <img src="https://flagcdn.com/al.svg" alt="Shqip" onclick="setLanguage('sq')" />
-    </div>
-    <div class="language-caption" style="font-size: 0.8rem; font-family: 'Allura', cursive; color: #444; line-height: 1.3;">
-      Language / Gjuha
-    </div>
-  </div>
-</div>
-
-
-
-  <div class="lang-en">
-    <div style="height: 1.5rem;"></div>
-    <h2 class="fade-in delay-1">Milot & Ermira</h2>
-    <p class="wedding-date fade-in delay-2">25 &middot; July &middot; 2026</p>
-    <h1 class="fade-in delay-3">
-      <span>Save </span>
-      <span class="word-the-inline">the</span>
-      <span> Date</span>
-    </h1>
-  </div>
-
-  <div class="lang-sq lang-active">
-    <div style="height: 1.5rem;"></div>
-    <h2 class="fade-in delay-1">Miloti & Ermira</h2>
-    <p class="wedding-date fade-in delay-2">25 &middot; Korrik &middot; 2026</p>
-    <h1 class="fade-in delay-3">Jeni të ftuar në gëzimin e familjes ton</h1>
-  </div>
-
-  <div class="countdown-container">
-    <div class="time-box delay-4">
-      <span id="days">00</span>
-      <span class="label-days lang-en">Days</span>
-      <span class="label-days lang-sq lang-active">Ditë</span>
-    </div>
-    <div class="time-box delay-5">
-      <span id="hours">00</span>
-      <span class="label-hours lang-en">Hours</span>
-      <span class="label-hours lang-sq lang-active">Orë</span>
-    </div>
-    <div class="time-box delay-6">
-      <span id="minutes">00</span>
-      <span class="label-minutes lang-en">Minutes</span>
-      <span class="label-minutes lang-sq lang-active">Minuta</span>
-    </div>
-    <div class="time-box delay-7">
-      <span id="seconds">00</span>
-      <span class="label-seconds lang-en">Seconds</span>
-      <span class="label-seconds lang-sq lang-active">Sekonda</span>
-    </div>
-  </div>
-
-  <section class="video-section">
-    <video autoplay muted playsinline loop>
-      <source src="Video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-<h1 class="lang-en fade-on-scroll">
-  Celebrate with us! <span class="emoji-bounce">🥂</span>
-</h1>
-<h1 class="lang-sq lang-active fade-on-scroll">
-  Festoni me ne! <span class="emoji-bounce">🥂</span>
-</h1>
-
-        <!-- INSERTED CALENDAR ANIMATION -->
-<div class="calendar-container" id="calendarSection">
-  <img src="Calendar1.png" alt="Calendar July 2026" class="calendar-image" />
-<svg class="circle-animation" viewBox="0 0 400 428" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-  </defs>
-  <circle class="circle-path" cx="303.5" cy="350.5" r="26" filter="url(#glow)" />
-</svg>
-
-</div>
-    
-
-    <!-- Added venue name and location -->
-    <div style="height: 1.5rem;"></div>
-<h1 style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-  Restaurant<br> 
-  "BA PALACE",
-</h1>
-<h1 style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-  Shtime 72000
-</h1>
-<div style="height: 1.5rem;"></div>
-
-    <h1 class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      Welcoming guests (drinks reception) 🍸
-    </h1>
-    <h1 class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      19:00 - 19:30
-    </h1>
-    <h1 class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      Pritja e mysafirëve me koktej 🍸
-    </h1>
-    <h1 class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      19:00 - 19:30
-    </h1>
-    
-    
-    
-
-    
-    
-    
+  <section class="fade-on-scroll delay-1" style="margin-top:4rem;">
+    <h2 class="lang-en">Milot & Ermira</h2>
+    <h2 class="lang-sq" style="display:none;">Miloti & Ermira</h2>
+    <p class="wedding-date lang-en">25 · July · 2026</p>
+    <p class="wedding-date lang-sq" style="display:none;">25 · Korrik · 2026</p>
   </section>
 
-  <section class="gallery-section">
+  <div class="countdown-container fade-on-scroll delay-2">
+    <div class="time-box"><span id="days">00</span><span>Days</span></div>
+    <div class="time-box"><span id="hours">00</span><span>Hours</span></div>
+    <div class="time-box"><span id="minutes">00</span><span>Minutes</span></div>
+    <div class="time-box"><span id="seconds">00</span><span>Seconds</span></div>
+  </div>
 
-    <!-- Swiper -->
+  <section class="video-section fade-on-scroll delay-3">
+    <video autoplay muted playsinline loop src="Video.mp4"></video>
+    <h1 class="lang-en">Celebrate with us! 🥂</h1>
+    <h1 class="lang-sq" style="display:none;">Festoni me ne! 🥂</h1>
+  </section>
+
+  <div id="calendarSection" class="calendar-container fade-on-scroll delay-4">
+    <img src="Calendar1.png" alt="Calendar" class="calendar-image" />
+    <svg class="circle-animation" viewBox="0 0 400 428">
+      <circle class="circle-path" cx="303.5" cy="350.5" r="26"/>
+    </svg>
+  </div>
+
+  <section class="gallery-section fade-on-scroll delay-5">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-         <img src="image1.jpg" alt="Photo 1" />
-    </div>
-    <!-- <div class="swiper-slide">
-      <img src="image2.jpg" alt="Photo 2" />
-    </div> -->
-    <div class="swiper-slide">
-      <img src="Image3.jpg" alt="Photo 3" />
-    </div>
-    <!-- <div class="swiper-slide">
-      <img src="Image4.jpg" alt="Photo 4" />
-    </div> -->
-    <!-- Add more slides as needed -->
+        <div class="swiper-slide"><img src="image1.jpg" alt="Photo 1"></div>
+        <div class="swiper-slide"><img src="Image3.jpg" alt="Photo 3"></div>
       </div>
-      <!-- Pagination -->
       <div class="swiper-pagination"></div>
-
-      <!-- Navigation buttons -->
-      <div class="swiper-button-prev" aria-label="Previous slide"></div>
-      <div class="swiper-button-next" aria-label="Next slide"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
   </section>
 
-  <div class="footer">
+  <div class="footer fade-on-scroll delay-6" style="padding:2rem 1rem 1rem;">
     <h2 class="lang-en">Contact Us</h2>
-    <h2 class="lang-sq lang-active">Na Kontaktoni</h2>
-
-    <p class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0.2rem 0 0;">
-      Please confirm your attendance at your earliest convenience by phone
-    </p>
-    
-    <p class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0.2rem 0 0;">
-      Ju lutemi konfirmoni pjesëmarrjen tuaj me telefon
-    </p>
-<div style="height: 1.5rem;"></div>
-    <p class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0 0 0.8rem;">+44 7828995217
-    </p>
-    
-    <p class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0 0 0.8rem;">+44 7828995217
-    </p>
-        <div style="height: 1.5rem;"></div>
-    <p class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0 0 0.8rem;">We welcome you
-    </p>
-    
-    <p class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 1.4rem; margin: 0 0 0.8rem;">Ju mirëpresim
-    </p>
-    
-
-    <div style="height: 1.5rem;"></div>
-
-
-<div style="margin-top: 0rem; display: flex; flex-direction: column; align-items: center;">
-  <a href="https://www.instagram.com/bapalace1?igsh=eGdqcmplb2R2ZzFi" target="_blank" aria-label="BA Palace Instagram"
-    class="instagram-link">
-    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#bfae85" viewBox="0 0 24 24"
-      style="vertical-align: middle;">
-      <path
-        d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-2.75a1.25 1.25 0 112.5 0 1.25 1.25 0 01-2.5 0z" />
-    </svg>
-  </a>
-
-  <!-- English caption and parking -->
-  <div class="lang-en">
-    <div class="instagram-caption">Wedding venue</div>
-    <p style="font-family: 'Aboreto', cursive; font-size: 1rem; margin: 0.3rem 0 0;">
-      Groom’s guests parking: Rear of the venue
-    </p>
-    <p style="font-family: 'Aboreto', cursive; font-size: 1rem; margin: 0 0 0.8rem;">
-      Bride’s guests parking: Front of the venue
-    </p>
+    <h2 class="lang-sq" style="display:none;">Na Kontaktoni</h2>
+    <p class="lang-en">Please confirm attendance by phone: +44 7828995217</p>
+    <p class="lang-sq" style="display:none;">Ju lutem konfirmoni pjesëmarrjen në: +44 7828995217</p>
   </div>
 
-  <!-- Albanian caption and parking -->
-  <div class="lang-sq lang-active">
-    <div class="instagram-caption">Salla e dasmës</div>
-    <p style="font-family: 'Aboreto', cursive; font-size: 1rem; margin: 0.3rem 0 0;">
-      Parkimi për mysafirët e dhëndrit: Mbrapa sallës
-    </p>
-    <p style="font-family: 'Aboreto', cursive; font-size: 1rem; margin: 0 0 0.8rem;">
-      Parkimi për mysafirët e nuses: Para sallës
-    </p>
-  </div>
-</div>
-
-
-  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script>
-    const weddingDate = new Date("2026-07-25T20:00:00");
-    const daysSpan = document.getElementById("days");
-    const hoursSpan = document.getElementById("hours");
-    const minutesSpan = document.getElementById("minutes");
-    const secondsSpan = document.getElementById("seconds");
-
-    function updateCountdown() {
-      const now = new Date();
-      const diff = weddingDate - now;
-
-      if (diff <= 0) {
-        daysSpan.textContent = "00";
-        hoursSpan.textContent = "00";
-        minutesSpan.textContent = "00";
-        secondsSpan.textContent = "00";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      daysSpan.textContent = String(days).padStart(2, '0');
-      hoursSpan.textContent = String(hours).padStart(2, '0');
-      minutesSpan.textContent = String(minutes).padStart(2, '0');
-      secondsSpan.textContent = String(seconds).padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    function setLanguage(lang) {
-      document.querySelectorAll('.lang-en, .lang-sq').forEach(el => {
-        el.classList.remove('lang-active');
-      });
-      document.querySelectorAll(`.lang-${lang}`).forEach(el => {
-        el.classList.add('lang-active');
-      });
-
-      document.querySelectorAll('.time-box').forEach(box => {
-        box.style.animation = 'none';
-        void box.offsetWidth;
-        box.style.animation = '';
-      });
-    }
-
-    const swiper = new Swiper('.swiper-container', {
+    new Swiper('.swiper-container', {
       slidesPerView: 1,
       spaceBetween: 15,
       loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        480: { slidesPerView: 2 },
-        768: { slidesPerView: 3 },
-      },
-    });
-    
-    let musicStarted = false;
-
-function tryPlayMusic() {
-  if (!musicStarted) {
-    const audio = document.getElementById("bg-music");
-    audio.play().then(() => {
-      musicStarted = true;
-    }).catch((e) => {
-      console.log("Playback failed:", e);
-    });
-  }
-}
-
-// Audio play on user interaction with Safari mute workaround
-  const audio = document.getElementById('bg-music');
-  let audioStarted = false;
-
-  function playAudioOnInteraction() {
-    if (audioStarted) return;
-    audioStarted = true;
-
-    // Safari autoplay workaround: start muted then unmute
-    audio.volume = 0;
-    audio.play().then(() => {
-      // Fade in volume to normal after short delay
-      let vol = 0;
-      const fadeIn = setInterval(() => {
-        vol += 0.05;
-        if (vol >= 1) {
-          vol = 1;
-          clearInterval(fadeIn);
-        }
-        audio.volume = vol;
-      }, 100);
-    }).catch(err => {
-      console.log('Audio play error:', err);
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: { 480: { slidesPerView: 2 }, 768: { slidesPerView: 3 } }
     });
 
-    // Remove event listeners after playing
-    window.removeEventListener('scroll', playAudioOnInteraction);
-    window.removeEventListener('touchstart', playAudioOnInteraction);
-    window.removeEventListener('click', playAudioOnInteraction);
-  }
+    const weddingDate = new Date("2026-07-25T20:00:00");
+    const updateCountdown = () => {
+      const diff = weddingDate - new Date();
+      const days = String(Math.floor(diff / 86400000)).padStart(2,'0');
+      const hrs = String(Math.floor((diff % 86400000)/3600000)).padStart(2,'0');
+      const mins = String(Math.floor((diff % 3600000)/60000)).padStart(2,'0');
+      const secs = String(Math.floor((diff % 60000)/1000)).padStart(2,'0');
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hrs;
+      document.getElementById("minutes").textContent = mins;
+      document.getElementById("seconds").textContent = secs;
+    };
+    setInterval(updateCountdown, 1000); updateCountdown();
 
-  // Wait for user interaction to start audio
-  window.addEventListener('scroll', playAudioOnInteraction, { once: true });
-  window.addEventListener('touchstart', playAudioOnInteraction, { once: true });
-  window.addEventListener('click', playAudioOnInteraction, { once: true });
-
-  // Pause/resume audio on tab visibility change
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      audio.pause();
-    } else {
-      if (audioStarted) {
-        audio.play().catch(err => {
-          console.log('Audio play on visibility change error:', err);
-        });
-      }
-    }
-  });
-  
-  // 👇 NEW: Fade-in on scroll for text (incl. emoji bounce)
-const fadeEls = document.querySelectorAll('.fade-on-scroll');
-
-const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, {
-  threshold: 1
-});
-
-fadeEls.forEach(el => fadeObserver.observe(el));
-
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
+    const fadeEls = document.querySelectorAll('.fade-on-scroll');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
         }
       });
-    }, { threshold: 1 });
-    observer.observe(document.getElementById('calendarSection'));
+    }, { threshold: 0.2 });
+    fadeEls.forEach(el => observer.observe(el));
 
-</script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[class*="lang-"]').forEach(el => {
+        el.style.display = el.classList.contains(`lang-${lang}`) ? 'block' : 'none';
+      });
+    }
 
-    <div style="text-align: center; font-family: sans-serif; font-size: 0.6rem; color: #666; margin-top: 1rem; padding-bottom: 0rem;">
-      © 2025 Milot Selmani
-    </div>
+    let musicPlayed = false;
+    const bgMusic = document.getElementById('bg-music');
+    const playMusic = () => {
+      if (!musicPlayed) {
+        bgMusic.play().catch(()=>{});
+        musicPlayed = true;
+      }
+    };
+    window.addEventListener('scroll', playMusic);
+    window.addEventListener('touchstart', playMusic);
+  </script>
 </body>
 </html>
