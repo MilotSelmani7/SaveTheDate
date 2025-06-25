@@ -14,14 +14,16 @@
   
 .fade-on-scroll {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease-out 4s, transform 1s ease-out 4s;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
 }
 
 .fade-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
 
 .emoji-bounce {
   display: inline-block;
@@ -473,7 +475,7 @@ stroke-dashoffset: 163.36;
 
         <!-- INSERTED CALENDAR ANIMATION -->
 <div class="calendar-container" id="calendarSection">
-  <img src="Calendar1.png" alt="Calendar July 2026" class="calendar-image" />
+  <img src="Calendar1.png" alt="Calendar July 2026" class="calendar-image fade-on-scroll" />
 <svg class="circle-animation" viewBox="0 0 400 428" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
@@ -491,29 +493,35 @@ stroke-dashoffset: 163.36;
     
 
     <!-- Added venue name and location -->
-    <div style="height: 1.5rem;"></div>
-<h1 style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+<div style="height: 1.5rem;"></div>
+
+<h1 class="fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
   Restaurant<br> 
   "BA PALACE",
 </h1>
-<h1 style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+
+<h1 class="fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
   Shtime 72000
 </h1>
+
 <div style="height: 1.5rem;"></div>
 
-    <h1 class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      Welcoming guests (drinks reception) 🍸
-    </h1>
-    <h1 class="lang-en" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      19:00 - 19:30
-    </h1>
-    <h1 class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      Pritja e mysafirëve me koktej 🍸
-    </h1>
-    <h1 class="lang-sq lang-active" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
-      19:00 - 19:30
-    </h1>
-    
+<h1 class="lang-en fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+  Welcoming guests (drinks reception) 🍸
+</h1>
+
+<h1 class="lang-en fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+  19:00 - 19:30
+</h1>
+
+<h1 class="lang-sq lang-active fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+  Pritja e mysafirëve me koktej 🍸
+</h1>
+
+<h1 class="lang-sq lang-active fade-on-scroll" style="font-family: 'Aboreto', cursive; font-size: 2.0rem; margin: 0 0 0.5rem; color: #000000;">
+  19:00 - 19:30
+</h1>
+
     
     
 
@@ -742,20 +750,22 @@ function tryPlayMusic() {
     }
   });
   
-  // 👇 NEW: Fade-in on scroll for text (incl. emoji bounce)
 const fadeEls = document.querySelectorAll('.fade-on-scroll');
 
 const fadeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      // Optional: stop observing once animated
+      fadeObserver.unobserve(entry.target);
     }
   });
 }, {
-  threshold: 1
+  threshold: 0.2
 });
 
 fadeEls.forEach(el => fadeObserver.observe(el));
+
 
 
     const observer = new IntersectionObserver((entries) => {
