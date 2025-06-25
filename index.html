@@ -181,10 +181,42 @@ Put your HTML text here<!DOCTYPE html>
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
-  padding-bottom: 2.5rem; /* ensures there's room for pagination */
+  padding-bottom: 2rem; /* leaves space below image for dots if needed */
 }
 
-/* Swiper pagination: positioned over the image */
+/* Force container height based on slide image */
+.swiper-slide {
+  position: relative;
+  height: 16rem; /* Ensure height for smaller screens */
+}
+
+/* Make sure image fills the slide container */
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect (only applies on non-touch) */
+.swiper-slide:hover img {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #bfae85;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Dots (pagination) */
 .swiper-pagination {
   position: absolute !important;
   bottom: 10px;
@@ -192,35 +224,12 @@ Put your HTML text here<!DOCTYPE html>
   width: 100%;
   display: flex !important;
   justify-content: center;
-  box-sizing: border-box;
   padding: 0 1rem;
-  margin-top: 0; /* remove previous push */
+  margin: 0;
+  z-index: 10;
 }
 
-/* Swiper slide images */
-.swiper-slide img {
-  width: 100%;
-  height: 16rem;
-  object-fit: cover;
-  border-radius: 1rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.swiper-slide:hover img {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* Swiper navigation arrows */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #bfae85;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-/* Swiper pagination bullets */
+/* Dot colour */
 .swiper-pagination-bullet {
   background: #bfae85;
   opacity: 0.7;
